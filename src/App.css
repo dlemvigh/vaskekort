@@ -1,0 +1,8 @@
+.App {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.editor td, .editor th {
+  padding-right: 20px;
+}
