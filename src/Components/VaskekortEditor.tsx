@@ -23,7 +23,18 @@ class VaskekortEditor extends React.Component<IProps> {
                   value={payment.amount} 
                   onChange={this.handleChange} /> 
               </td>
-              <td>
+              <td className={"payment " + payment.payment}>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="cash"
+                    checked={PaymentType.Cash === payment.payment}
+                    onChange={this.handlePaymentChange}
+                  />
+                  Kontant
+                </label>
+              </td>
+              {/* <td>
                 <label>
                   <input 
                     type="radio" 
@@ -42,8 +53,8 @@ class VaskekortEditor extends React.Component<IProps> {
                     onChange={this.handleChange} />
                   {PaymentType.Cash}
                 </label>
-              </td>
-              <td>
+              </td> */}
+              <td className={"payment " + payment.purchase}>
                 <label>
                   <input 
                     type="radio" 
@@ -102,6 +113,13 @@ class VaskekortEditor extends React.Component<IProps> {
     const target = event.currentTarget;
     const payment = {...this.props.payment};
     payment[target.name] = target.value;
+    this.props.onChange(this.props.index, payment);
+  }
+
+  private handlePaymentChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const target = event.currentTarget;
+    const payment = {...this.props.payment};
+    payment.payment = target.checked ? PaymentType.Cash : PaymentType.MobileyPay;
     this.props.onChange(this.props.index, payment);
   }
 

@@ -30,11 +30,13 @@ const defaultPayment: IPayment = {
   purchase: PurchaseType.Wash
 }
 
+const defaultPayments: IPayment[] = Array.from({ length: 10 }, () => defaultPayment );
+
 class VaskekortContainer extends React.Component<{}, IState>  {
   constructor(props: {}) {
     super(props);
     this.state = {
-      payments: [defaultPayment]
+      payments: defaultPayments
     }
   }
 
@@ -63,7 +65,7 @@ class VaskekortContainer extends React.Component<{}, IState>  {
 
   private clear = () => {
     this.setState({
-      payments: [defaultPayment]
+      payments: defaultPayments
     })
   }
 
